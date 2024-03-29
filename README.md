@@ -16,7 +16,7 @@ kubectl logs myapp-deployment-6fb68c7f5d-zdc76
 
 # Destroy deployments, services, pods, daemonset
 
-kubectl delete deployments --all
-kubectl delete services --all
-kubectl delete pods --all
-kubectl delete daemonset --all
+kubectl delete deployments --all \
+kubectl delete services --all \
+kubectl delete pods --all \
+kubectl delete daemonset --all \
