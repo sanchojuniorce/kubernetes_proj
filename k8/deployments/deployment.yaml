@@ -1,18 +1,30 @@
-appVersion: apps/v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
+  labels:
+    app: myapp-deployment
+  name: myapp-deployment
 spec:
+  replicas: 1
+  #number of replicas generated
   selector:
     matchLabels:
       app: myapp
+      version: v01
   template:
     metadata:
       labels:
         app: myapp
+        version: v01
     spec:
       containers:
         - name: myapp
-          image: <Image>
+          image: node_app
+          imagePullPolicy: Never
           resources:
-          limite:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+          - containerPort: 3000
+      restartPolicy: Always
