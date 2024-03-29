@@ -14,9 +14,15 @@ kubectl get pods
 # Verify log pod
 kubectl logs myapp-deployment-6fb68c7f5d-zdc76
 
+# Expose Service called Kubernetes
+kubectl expose deployment myapp-deployment --type=LoadBalancer --port=3000
+
+# Disponibilizando Tunnel pelo Minikube
+minikube tunnel
+
 # Destroy deployments, services, pods, daemonset
 
 kubectl delete deployments --all \
 kubectl delete services --all \
 kubectl delete pods --all \
-kubectl delete daemonset --all \
+kubectl delete daemonset --all
