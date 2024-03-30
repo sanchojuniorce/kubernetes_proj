@@ -1,6 +1,12 @@
 # Build Image
 docker build . -t node_app -f docker/Dockerfile
 
+# Execute Image
+docker run -d -p 3000:3000 node_app
+
+# Load Image Minikube
+minikube image load node_app
+
 # Verify LoadBalancer if not installed, execute command:
 kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.39 -- /agnhost netexec --http-port=8080
 
