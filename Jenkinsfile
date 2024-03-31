@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('clone projeto'){
             steps {
-                git branch: 'main', credentialsId: 'eduardo.teixeira', url: 'https://github.com/sanchojuniorce/kubernetes_proj'
+                git branch: 'main', credentialsId: 'sanchojuniorce', url: 'https://github.com/sanchojuniorce/kubernetes_proj'
               
             }
         }
