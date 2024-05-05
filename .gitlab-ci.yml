@@ -34,7 +34,7 @@ build-job:       # This job runs in the build stage, which runs first.
     #- docker run -d -p 3000:3000 node_app
     #- echo "Complete Execute Image"
     - echo "Start Execute Kubectl"
-    - /bin/bash -c ls -lh /home/sanchojunior/
+    - ifconfig && pwd
     - /bin/sh kubectl apply -f ./k8/deployments/deployment.yaml
     - echo "Complete Execute Kubectl"
     - echo "Start Checking Pod"
