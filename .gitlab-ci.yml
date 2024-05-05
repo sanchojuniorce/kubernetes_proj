@@ -27,14 +27,15 @@ build-job:       # This job runs in the build stage, which runs first.
     - docker:dind
   stage: build
   script:
-    - echo "Start Build Image"
-    - docker build . -t node_app -f docker/Dockerfile
-    - echo "Complete Build Image."
-    - echo "Start Execute Image"
-    - docker run -d -p 3000:3000 node_app
-    - echo "Complete Execute Image"
+    #- echo "Start Build Image"
+    #- docker build . -t node_app -f docker/Dockerfile
+    #- echo "Complete Build Image."
+    #- echo "Start Execute Image"
+    #- docker run -d -p 3000:3000 node_app
+    #- echo "Complete Execute Image"
     - echo "Start Execute Kubectl"
-    - kubectl apply -f ./k8/deployments/deployment.yaml
+    - /bin/bash -c ls -lh /home/sanchojunior/
+    - /bin/sh kubectl apply -f ./k8/deployments/deployment.yaml
     - echo "Complete Execute Kubectl"
     - echo "Start Checking Pod"
     - kubectl get pods
