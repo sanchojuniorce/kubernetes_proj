@@ -33,9 +33,6 @@ build-job:       # This job runs in the build stage, which runs first.
     - echo "Start Execute Image"
     - docker run -d -p 3000:3000 node_app
     - echo "Complete Execute Image"
-    - echo "Verify LoadBalancer if not installed"
-    - kubectl create deployment hello-node --image=registry.k8s.io/e2e-test-images/agnhost:2.39 -- /agnhost netexec --http-port=8080
-    - echo "Complete Verify"
     - echo "Start Execute Kubectl"
     - kubectl apply -f ./k8/deployments/deployment.yaml
     - echo "Complete Execute Kubectl"
