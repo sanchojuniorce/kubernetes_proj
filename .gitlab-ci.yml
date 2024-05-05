@@ -27,27 +27,30 @@ build-job:       # This job runs in the build stage, which runs first.
     - docker:dind
   stage: build
   script:
-    #- echo "Start Build Image"
-    #- docker build . -t node_app -f docker/Dockerfile
-    #- echo "Complete Build Image."
-    #- echo "Start Execute Image"
-    #- docker run -d -p 3000:3000 node_app
-    #- echo "Complete Execute Image"
-    - echo "Start Execute Kubectl"
-    - ifconfig && pwd
-    - /usr/local/bin/kubectl apply -f ./k8/deployments/deployment.yaml
-    - echo "Complete Execute Kubectl"
-    - echo "Start Checking Pod"
-    - kubectl get pods
-    - echo "Complete Checking Pod"
-    - echo "Start Verify log pod"
-    - kubectl logs | grep myapp-deployment
-    - echo "Complete Verify log pod"
-    - echo "Start Expose Service called Kubernetes"
-    - kubectl expose deployment myapp-deployment --type=LoadBalancer --port=3000
-    - echo "Start Providing Tunnel through Minikube"
-    - minikube tunnel
-    - echo "Complete Providing Tunnel through Minikube"
+    - echo "Start Build Image"
+    - docker build . -t node_app -f docker/Dockerfile
+    - echo "Complete Build Image."
+    - echo "Start Execute Image"
+    - docker run -d -p 3000:3000 node_app
+    - echo "Complete Execute Image"
+    - echo "Start View Cluster Minikube"
+    - eval $(minikube -p minikube docker-env --shell=bash)
+    - echo "Stop View CCluster Minikube"
+    #- echo "Start Execute Kubectl"
+    #- ifconfig && pwd
+    #- kubectl apply -f ./k8/deployments/deployment.yaml
+    #- echo "Complete Execute Kubectl"
+    #- echo "Start Checking Pod"
+    #- kubectl get pods
+    #- echo "Complete Checking Pod"
+    #- echo "Start Verify log pod"
+    #- kubectl logs | grep myapp-deployment
+    #- echo "Complete Verify log pod"
+    #- echo "Start Expose Service called Kubernetes"
+    #- kubectl expose deployment myapp-deployment --type=LoadBalancer --port=3000
+    #- echo "Start Providing Tunnel through Minikube"
+    #- minikube tunnel
+    #- echo "Complete Providing Tunnel through Minikube"
 
 
 #unit-test-job:   # This job runs in the test stage.
